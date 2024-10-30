@@ -16,8 +16,14 @@ class SolidIngredient implements Ingredient{
     public String getName(){
         return this._name;
     }
+    public void setName(String name){
+        this._name = name;
+    }
     public double getQuantity(){
         return this._quantity;
+    }
+    public void setQuantity(double quantity){
+        this._quantity = quantity;
     }
 }
 class LiquidIngredient implements Ingredient{
@@ -32,8 +38,14 @@ class LiquidIngredient implements Ingredient{
     public String getName(){
         return this._name;
     }
+    public void setName(String name){
+        this._name = name;
+    }
     public double getQuantity(){
         return this._quantity;
+    }
+    public void setQuantity(double quantity){
+        this._quantity = quantity;
     }
 }
 class Recipe<T extends Ingredient>{
@@ -46,7 +58,18 @@ class Recipe<T extends Ingredient>{
         this._instructions = instructions;
         this._ingredients = new ArrayList<T>();
     }
-    private void addIngredient(T t){
+    public void addIngredient(T t){
         _ingredients.add(t);
+    }
+    public void print() {
+        if(_ingredients != null) {
+            System.out.println("Value: " + _ingredients);
+        }
+        else System.out.println("Empty");
+    }
+}
+public class Main{
+    public static void main(String args[]){
+
     }
 }
