@@ -64,16 +64,18 @@ class Recipe<T extends Ingredient>{
 
 public class Main{
     public static int menu(Scanner s){
-        int i = s.nextInt();
-        return i;
+        System.out.println("1 to add Ingredient\n2 to print\n3 to exit");
+        try{
+           int i  = Integer.valueOf(s.nextLine());
+           return i;
+        }
+        catch (Exception e){
+            System.out.println("NO Try again");
+            return menu(s);
+        }
     }
     public static void addIng(Recipe<Ingredient> r ,Scanner s){
         System.out.println("is this Liquid(l) or Solid(s)");
-        try{
-
-        }catch (Exception e){
-            System.out.println("No");
-        }
         char type = s.nextLine().charAt(0);
         System.out.println("Enter Ingredient Name");
         String name = s.nextLine();
@@ -90,30 +92,21 @@ public class Main{
     }
     public static void main(String args[]){
         Recipe<Ingredient> recipe = null;
-        String n, i;
-
         Scanner key = new Scanner(System.in);
-
+        String n, i;
         System.out.println("Enter Name of Recipe"); n = key.nextLine();
         System.out.println("Enter Instructions of Recipe"); i = key.nextLine();
-
-        System.out.println("1 to add Ingredient\n2 to print\n3 to exit");
-        int choice = 0;
         recipe = new Recipe<>(n,i);
-        try{
-            choice  = Integer.valueOf(key.nextLine());
-        }
-        catch (Exception e){
-            System.out.println("NO");
-        }
 
+
+        int choice = menu(key);
         while(choice != 3){
             switch (choice) {
                 case 1 -> addIng(recipe,key);
                 case 2 -> recipe.print();
-                default -> System.out.println("Invalid");
+                default -> System.out.println("Invalid Choice");
             }
-            choice = key.nextInt();
+            choice = menu(key);
 
         }
     }
